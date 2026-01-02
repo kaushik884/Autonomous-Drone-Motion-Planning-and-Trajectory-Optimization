@@ -5,6 +5,7 @@ import rrt
 import boundary_constraints
 import cost_function
 import time
+from rviz2_bridge import visualize_in_rviz2
 
 ###########################################################################################
 # # Define simple scenario
@@ -185,14 +186,22 @@ print("\n" + "-"*80)
 print("STAGE 3: VISUALIZATION")
 print("-"*80)
 
-helpers.drone_racing_path_with_obstacles(
-    hoops_final, start_final, optimized_final, obstacles_easy,
-)
+# helpers.drone_racing_path_with_obstacles(
+#     hoops_final, start_final, optimized_final, obstacles_easy,
+# )
 
-print("\n✨ Interactive 3D visualization above!")
-print("   - Rotate: mouse drag")
-print("   - Zoom: scroll wheel")
-print("   - Pan: right-click drag")
+# print("\n✨ Interactive 3D visualization above!")
+# print("   - Rotate: mouse drag")
+# print("   - Zoom: scroll wheel")
+# print("   - Pan: right-click drag")
+visualize_in_rviz2(
+    hoops=hoops_final,
+    start=start_final,
+    rrt_path=rrt_final_path,
+    optimized_path=optimized_final,
+    obstacles=obstacles_easy,
+    animate=True
+)
 
 
 def compute_path_length(path):
